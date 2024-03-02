@@ -1,0 +1,42 @@
+﻿<Window x:Class="diploma_desk.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:diploma_desk"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800"  MaxHeight="450" MaxWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Background="#fcba65" Click="BtnCreate_Click" IsEnabled="True" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Создать заказ"/>
+        <Button Grid.Column="1" Background="#fcba65" IsEnabled="False" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Главная"/>
+        <Button Grid.Column="2" Background="#fcba65" Click="BtnOrder_Click" IsEnabled="True" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Заказы"/>
+        <Button Grid.Column="3" Background="#fcba65" Click="BtnMyOrd_Click" IsEnabled="True" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Мои заказы"/>
+        
+        <Grid Grid.Row="1" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Label FontSize="24" FontWeight="Bold" VerticalContentAlignment="Center" Content="Добро пожаловать!"/>
+            <Label Grid.Row="1" FontSize="16" Content="Возьмите заказ на странице Заказы &#13;Удачного рабочего дня!"/>
+            <Image Grid.Row="1" Grid.Column="2" Source="C:\Users\sasha\Desktop\User.png"/>
+        </Grid>
+        
+    </Grid>
+</Window>
