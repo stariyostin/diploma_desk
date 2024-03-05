@@ -64,8 +64,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditOrd.xaml.cs">
       <DependentUpon>EditOrd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditProductWindow.xaml.cs">
+      <DependentUpon>EditProductWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs">
       <DependentUpon>ModelPapirus.tt</DependentUpon>
@@ -96,6 +102,10 @@
     <Compile Include="User.cs">
       <DependentUpon>ModelPapirus.tt</DependentUpon>
     </Compile>
+    <Page Include="AddProductWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Authorization.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -109,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="EditOrd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditProductWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

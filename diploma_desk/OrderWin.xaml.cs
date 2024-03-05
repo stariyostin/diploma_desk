@@ -26,7 +26,7 @@ namespace diploma_desk
                 return false;
 
             if (buttonType == "Confirm")
-                return status == "Создан" || status == "Ожидает поставки"; // Кнопка "Confirm" доступна, если статус равен "Создан" или "Ожидает поставки"
+                return status == "Создан"; // Кнопка "Confirm" доступна, если статус равен "Создан" или "Ожидает поставки"
             else if (buttonType == "Reject")
                 return status == "Создан";
             else if (buttonType == "Take")
@@ -91,7 +91,6 @@ namespace diploma_desk
                 if (orderToUpdate != null)
                 {
                     orderToUpdate.StatusID = 3;
-                    orderToUpdate.ManagerID = CurrentManager.Id;
                     dbContext.SaveChanges();
                     LoadData(); // Обновляем данные после изменения статуса
                 }

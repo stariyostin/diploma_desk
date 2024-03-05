@@ -66,6 +66,14 @@
                                             </MultiBinding>
                                         </Button.IsEnabled>
                                     </Button>
+                                    <Button Content="Reject" Width="80" Margin="2" Click="ButtonReject_Click">
+                                        <Button.IsEnabled>
+                                            <MultiBinding Converter="{StaticResource BtnManOrdConverter}">
+                                                <Binding Path="Status"/>
+                                                <Binding Source="Reject"/>
+                                            </MultiBinding>
+                                        </Button.IsEnabled>
+                                    </Button>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

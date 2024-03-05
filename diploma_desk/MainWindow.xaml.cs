@@ -38,7 +38,9 @@ namespace diploma_desk
 
         private void BtnMyOrd_Click(object sender, RoutedEventArgs e)
         {
-
+            ManagerOrder managerOrder = new ManagerOrder();
+            managerOrder.Show();
+            this.Close();
         }
     }
 }

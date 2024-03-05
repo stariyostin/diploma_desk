@@ -18,4 +18,5 @@ namespace diploma_desk
     {
         public static int Id { get; set; } = 0;
     }
+
 }

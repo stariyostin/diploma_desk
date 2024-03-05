@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="EditOrd" Height="450" Width="800">
+        Title="EditOrd" Height="450" Width="800"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -22,36 +23,53 @@
         <Button Grid.Column="2" Background="#fcba65" Click="BtnOrd_Click" IsEnabled="True" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Заказы"/>
         <Button Grid.Column="3" Background="#fcba65" Click="BtnMyOrd_Click" IsEnabled="True" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Мои заказы"/>
         <Grid Grid.Row="1" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
-            <TextBox Grid.Row="1" x:Name="txtClientName" Margin="10"/>
-            <TextBox Grid.Row="2" x:Name="txtClientContact" Margin="10"/>
-            <DatePicker Grid.Row="3" x:Name="dpDeadline" Margin="10"/>
+            <!-- Поля для ввода информации о заказе -->
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+                <TextBlock Text="Имя клиента:" Margin="5"/>
+                <TextBox x:Name="ClientNameTextBox" Margin="5" />
+                <TextBlock Text="Контакты клиента:" Margin="5"/>
+                <TextBox x:Name="ClientContactTextBox" Margin="5" />
+                <TextBlock Text="Дедлайн:" Margin="5"/>
+                <DatePicker x:Name="DeadlineDatePicker" Margin="5" />
+            </StackPanel>
 
-            <!-- Поля для редактирования товаров в заказе -->
-            <ListBox Grid.Row="4" x:Name="lstProducts" Margin="10" SelectionMode="Extended" Height="200">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding ProductName}" Margin="5"/>
-                            <TextBox Text="{Binding Amount}" Margin="5"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <!-- Список товаров в заказе -->
+            <DataGrid x:Name="ProductsDataGrid" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3">
+                <DataGrid.Columns>
+                    <!-- Колонки списка товаров -->
+                    <DataGridTextColumn Header="Название" Binding="{Binding ProductName}" />
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" />
 
-            <!-- Кнопки для управления товарами в заказе -->
-            <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="Add Product" Width="100" Margin="5" Click="AddProductButton_Click"/>
-                <Button Content="Remove Product" Width="100" Margin="5" Click="RemoveProductButton_Click"/>
+                    <!-- Колонка кнопки "Изменить товар" -->
+                    <DataGridTemplateColumn Header="Опции">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Изменить товар" Click="EditProductButton_Click" Margin="0 0 5 0" />
+                                    <Button Content="Удалить товар" Click="DeleteProductButton_Click" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Кнопки управления -->
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="2">
+                <Button Content="Отменить заказ" Margin="5" Click="CancelButton_Click" />
+                <Button Content="Очистить все поля" Margin="5" Click="ClearFieldsButton_Click" />
+                <Button Content="Товар прибыл" Margin="5" Click="ProductArrivedButton_Click" />
+                <Button Content="Сохранить изменения" Margin="5" Click="SaveChangesButton_Click" />
+                <Button Content="Добавить товар" Margin="5" Click="AddProductButton_Click" />
             </StackPanel>
         </Grid>
     </Grid>

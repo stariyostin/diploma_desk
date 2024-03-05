@@ -25,7 +25,9 @@ namespace diploma_desk
             if (buttonType == "Ready")
                 return status == "В процессе";
             else if (buttonType == "Change")
-                return status == "Отклонён" || status == "Ожидает поставки";
+                return status == "Отклонён" || status == "Ожидает поставки" || status == "В процессе";
+            else if (buttonType == "Reject")
+                return status == "В процессе" || status == "Ожидает поставки";
 
             return false;
         }
@@ -97,10 +99,37 @@ namespace diploma_desk
                 }
             }
         }
+        private void ButtonReject_Click(object sender, RoutedEventArgs e)
+        {
+            if (ordersDataGrid.SelectedItem != null)
+            {
+                dynamic selectedOrder = ordersDataGrid.SelectedItem;
+                int orderId = selectedOrder.IDOrder;
+                var orderToUpdate = dbContext.Order.FirstOrDefault(o => o.IDOrder == orderId);
+                if (orderToUpdate != null)
+                {
+                    orderToUpdate.StatusID = 3;
+                    orderToUpdate.ManagerID = null;
+                    dbContext.SaveChanges();
+                    LoadOrdersForManager(CurrentManager.Id); // Обновляем данные после изменения статуса
+                }
+            }
+        }
 
         private void ButtonChange_Click(object sender, RoutedEventArgs e)
         {
+            if (ordersDataGrid.SelectedItem != null)
+            {
+                dynamic selectedOrder = ordersDataGrid.SelectedItem;
+                int orderId = selectedOrder.IDOrder;
 
+                // Создаем экземпляр окна изменения заказа, передавая ID заказа
+                EditOrd editOrderWindow = new EditOrd(orderId);
+
+                // Открываем окно изменения заказа
+                editOrderWindow.Show();
+                this.Close();
+            }
         }
 
         private void BtnCreateOrd_Click(object sender, RoutedEventArgs e)
