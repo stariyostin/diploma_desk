@@ -67,6 +67,9 @@
     <Compile Include="AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateOrd.xaml.cs">
+      <DependentUpon>CreateOrd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditOrd.xaml.cs">
       <DependentUpon>EditOrd.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <DependentUpon>Authorization.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="CreateOrd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditOrd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

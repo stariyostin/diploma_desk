@@ -26,7 +26,9 @@ namespace diploma_desk
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateOrd createOrd = new CreateOrd();
+            createOrd.Show();
+            this.Close();
         }
 
         private void BtnOrder_Click(object sender, RoutedEventArgs e)

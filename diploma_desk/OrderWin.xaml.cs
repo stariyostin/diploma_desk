@@ -185,7 +185,9 @@ namespace diploma_desk
 
         private void BtnCreateOrd_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateOrd createOrd = new CreateOrd();
+            createOrd.Show();
+            this.Close();
         }
     }
 }
