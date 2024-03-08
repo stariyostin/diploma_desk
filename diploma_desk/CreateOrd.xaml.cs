@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +29,9 @@ namespace diploma_desk
             dbContext = new PapirusEntities1(); // Инициализация контекста данных
             CreateOrderWithDummyData(); // Создаем заказ с заглушками при открытии окна
             LoadOrderData();
+            // Подписываемся на событие закрытия окна
+            Closing += CreateOrd_Closing;
         }
-
         private void CreateOrderWithDummyData()
         {
             try
@@ -40,8 +42,8 @@ namespace diploma_desk
                         DateOfCreate = DateTime.Now, // Устанавливаем текущую дату
                         StatusID = 1, // Устанавливаем начальный статус заказа
                         UserID = 1,
-                        DeadLine = DateTime.Now.AddDays(1)
-                    };
+                        DeadLine = new DateTime(2001, 1, 1)
+            };
 
                     // Добавляем заказ в контекст данных
                     dbContext.Order.Add(newOrder);
@@ -56,6 +58,57 @@ namespace diploma_desk
             {
                 MessageBox.Show($"Произошла ошибка при создании заказа: {ex.Message}");
             }
+        }
+        private void CreateOrd_Closing(object sender, CancelEventArgs e)
+        {
+            // Проверяем, существует ли заказ
+            if (orderId != 0)
+            {
+                // Находим заказ по его ID
+                var order = dbContext.Order.FirstOrDefault(o => o.IDOrder == orderId);
+                if (order != null)
+                {
+                    // Проверяем, является ли заказ заглушечным
+                    if (IsDummyOrder(order))
+                    {
+                        // Удаляем заказ из контекста данных
+                        dbContext.Order.Remove(order);
+                        // Сохраняем изменения в базе данных
+                        dbContext.SaveChanges();
+                    }
+                }
+            }
+        }
+        private void DeleteOrd()
+        {
+            // Проверяем, существует ли заказ
+            if (orderId != 0)
+            {
+                    // Находим заказ по его ID
+                    var order = dbContext.Order.FirstOrDefault(o => o.IDOrder == orderId);
+                    if (order != null)
+                    {
+                         // Проверяем, является ли заказ заглушечным
+                         if (IsDummyOrder(order))
+                         {
+                             // Удаляем заказ из контекста данных
+                             dbContext.Order.Remove(order);
+                             // Сохраняем изменения в базе данных
+                             dbContext.SaveChanges();
+                         }
+                    }
+            }
+        }
+        private bool IsDummyOrder(Order order)
+        {
+            // Здесь определяем условие, по которому заказ считается заглушечным.
+            // Например, если все поля заказа содержат значения по умолчанию.
+            // Пусть, для примера, заказ считается заглушечным, если ID пользователя равен 1,
+            // дата создания заказа равна текущей дате, а статус заказа равен 1.
+
+            return order.UserID == 1 &&
+                   order.DeadLine == new DateTime(2001, 1, 1) &&
+                   order.StatusID == 1;
         }
         public void LoadOrderData()
         {
@@ -243,21 +296,21 @@ namespace diploma_desk
                     return; // Прерываем выполнение метода, если заказ не прошел валидацию
                 }
 
-                // Проверяем, существует ли уже заказ с такими же данными (нужно добавить проверку на схожесть текущего заказа с уже имеющимися)
-                //var existingOrder = dbContext.Order.Any(o =>
-                //    o.UserID == dbContext.User.FirstOrDefault(u =>
-                //        u.ClientName == ClientNameTextBox.Text &&
-                //        u.ClientContact == ClientContactTextBox.Text)?.IDUser &&
-                //    o.DeadLine == DeadlineDatePicker.SelectedDate &&
-                //    o.Order_Product.Select(op => op.ProductID).OrderBy(id => id).SequenceEqual(
-                //        ProductsDataGrid.Items.OfType<Order_Product>().Select(item => item.ProductID).OrderBy(id => id)
-                //    ));
+                // Проверяем, существует ли уже заказ с такими же данными
+                var existingOrder = dbContext.Order.Any(o =>
+                    dbContext.User.Any(u =>
+                    u.ClientName == ClientNameTextBox.Text &&
+                    u.ClientContact == ClientContactTextBox.Text &&
+                    o.UserID == u.IDUser) &&
+                    o.DeadLine == DeadlineDatePicker.SelectedDate &&
+                    o.StatusID == 2 || o.StatusID == 5);
 
-                //if (existingOrder)
-                //{
-                //    MessageBox.Show("Такой заказ уже существует.");
-                //    return;
-                //}
+
+                if (existingOrder)
+                {
+                    MessageBox.Show("Такой заказ уже существует.");
+                    return;
+                }
 
                 // Проверяем, существует ли пользователь с указанным именем и контактом
                 User existingUser = dbContext.User.FirstOrDefault(u => u.ClientName == ClientNameTextBox.Text && u.ClientContact == ClientContactTextBox.Text);
@@ -300,6 +353,7 @@ namespace diploma_desk
                 else
                 {
                     MessageBox.Show("Заказ не найден.");
+                    DeleteOrd();
                 }
             }
             catch (Exception ex)
@@ -316,6 +370,7 @@ namespace diploma_desk
         }
         private void BtnMain_Click(object sender, RoutedEventArgs e)
         {
+            DeleteOrd();
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
@@ -323,6 +378,7 @@ namespace diploma_desk
 
         private void BtnOrd_Click(object sender, RoutedEventArgs e)
         {
+            DeleteOrd();
             OrderWin orderWin = new OrderWin();
             orderWin.Show();
             this.Close();
@@ -330,6 +386,7 @@ namespace diploma_desk
 
         private void BtnMyOrd_Click(object sender, RoutedEventArgs e)
         {
+            DeleteOrd();
             ManagerOrder managerOrder = new ManagerOrder();
             managerOrder.Show();
             this.Close();
