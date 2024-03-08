@@ -190,10 +190,40 @@ namespace diploma_desk
                 MessageBox.Show($"Произошла ошибка при обновлении статуса заказа: {ex.Message}");
             }
         }
+        private bool ValidateOrder()
+        {
+            // Проверяем, есть ли хотя бы один товар в заказе
+            if (ProductsDataGrid.Items.Count == 0)
+            {
+                MessageBox.Show("Добавьте хотя бы один товар в заказ.");
+                return false;
+            }
+
+            // Проверяем, заполнены ли поля с информацией о клиенте
+            if (string.IsNullOrWhiteSpace(ClientNameTextBox.Text) || string.IsNullOrWhiteSpace(ClientContactTextBox.Text))
+            {
+                MessageBox.Show("Введите имя клиента и контактные данные.");
+                return false;
+            }
+
+            // Проверяем, выбран ли дедлайн заказа
+            if (!DeadlineDatePicker.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Выберите дедлайн заказа.");
+                return false;
+            }
+
+            return true;
+        }
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                // Проверяем валидность заказа
+                if (!ValidateOrder())
+                {
+                    return; // Прерываем выполнение метода, если заказ не прошел валидацию
+                }
                 // Проверяем, существует ли пользователь с указанным именем и контактом
                 User existingUser = dbContext.User.FirstOrDefault(u => u.ClientName == ClientNameTextBox.Text && u.ClientContact == ClientContactTextBox.Text);
 
