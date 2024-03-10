@@ -303,7 +303,7 @@ namespace diploma_desk
                     u.ClientContact == ClientContactTextBox.Text &&
                     o.UserID == u.IDUser) &&
                     o.DeadLine == DeadlineDatePicker.SelectedDate &&
-                    o.StatusID == 2 || o.StatusID == 5);
+                    (o.StatusID != 2 || o.StatusID != 5));
 
 
                 if (existingOrder)
