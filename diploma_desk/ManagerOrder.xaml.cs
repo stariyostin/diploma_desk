@@ -92,6 +92,22 @@ namespace diploma_desk
                 var orderToUpdate = dbContext.Order.FirstOrDefault(o => o.IDOrder == orderId);
                 if (orderToUpdate != null)
                 {
+                    // Получаем список товаров в выбранном заказе
+                    var orderProducts = dbContext.Order_Product.Where(op => op.OrderID == orderId);
+
+                    foreach (var orderProduct in orderProducts)
+                    {
+                        // Получаем информацию о товаре из таблицы Product
+                        var product = dbContext.Product.FirstOrDefault(p => p.IDProduct == orderProduct.ProductID);
+                        if (product != null)
+                        {
+                            // Вычитаем количество товара в заказе из TotalAmount на складе
+                            int TotalAmount = int.Parse(product.TotalAmount);
+                            int Amount = int.Parse(orderProduct.Amount);
+                            TotalAmount -= Amount;
+                            product.TotalAmount = Convert.ToString(TotalAmount);
+                        }
+                    }
                     orderToUpdate.StatusID = 5;
                     orderToUpdate.ManagerID = CurrentManager.Id;
                     dbContext.SaveChanges();
