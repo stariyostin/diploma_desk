@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="Order" Height="450" Width="800" MinHeight="450" MinWidth="800"  MaxHeight="450" MaxWidth="800">
+        Title="Order" Height="450" Width="1250" >
     <Window.Resources>
         <local:ButtonAvailabilityConverter x:Key="ButtonAvailabilityConverter"/>
     </Window.Resources>
@@ -37,20 +37,20 @@
 
             <DataGrid x:Name="ordersDataGrid" Grid.Column="1" AutoGenerateColumns="False" Margin="10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Order" Binding="{Binding IDOrder}"/>
-                    <DataGridTextColumn Header="Client" Binding="{Binding ClientName}"/>
-                    <DataGridTextColumn Header="Contact" Binding="{Binding ClientContact}"/>
-                    <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}"/>
-                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Header="Date of Create" Binding="{Binding DateOfCreate}"/>
-                    <DataGridTextColumn Header="Deadline" Binding="{Binding Deadline}"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                    <DataGridTextColumn Header="Manager" Binding="{Binding Manager}"/>
-                    <DataGridTemplateColumn Header="Actions">
+                    <DataGridTextColumn Header="ID Order" Binding="{Binding IDOrder}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Имя клиента" Binding="{Binding ClientName}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Контакты" Binding="{Binding ClientContact}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Название товара" Binding="{Binding ProductName}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Дата создания" Binding="{Binding DateOfCreate}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Дедлайн" Binding="{Binding Deadline}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Менеджер" Binding="{Binding Manager}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Действия">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Confirm" Width="80" Margin="2" Click="ConfirmButton_Click">
+                                    <Button Content="Подтвердить" Width="80" Margin="2" Click="ConfirmButton_Click">
                                         <Button.IsEnabled>
                                             <MultiBinding Converter="{StaticResource ButtonAvailabilityConverter}">
                                                 <Binding Path="Status"/>
@@ -58,7 +58,7 @@
                                             </MultiBinding>
                                         </Button.IsEnabled>
                                     </Button>
-                                    <Button Content="Reject" Width="80" Margin="2" Click="RejectButton_Click">
+                                    <Button Content="Отклонить" Width="80" Margin="2" Click="RejectButton_Click">
                                         <Button.IsEnabled>
                                             <MultiBinding Converter="{StaticResource ButtonAvailabilityConverter}">
                                                 <Binding Path="Status"/>
@@ -66,7 +66,7 @@
                                             </MultiBinding>
                                         </Button.IsEnabled>
                                     </Button>
-                                    <Button Content="Take" Width="80" Margin="2" Click="TakeButton_Click">
+                                    <Button Content="Взять" Width="80" Margin="2" Click="TakeButton_Click">
                                         <Button.IsEnabled>
                                             <MultiBinding Converter="{StaticResource ButtonAvailabilityConverter}">
                                                 <Binding Path="Status"/>

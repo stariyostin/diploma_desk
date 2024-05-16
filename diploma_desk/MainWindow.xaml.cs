@@ -22,6 +22,14 @@ namespace diploma_desk
         public MainWindow()
         {
             InitializeComponent();
+            using (PapirusEntities1 db = new PapirusEntities1())
+            {
+                Manager manager = db.Manager.Where(x => x.IDManager == CurrentManager.Id).FirstOrDefault();
+                if (manager != null)
+                {
+                    WelLbl.Content = "Добро пожаловать," + manager.Name + "!";
+                }
+            }
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)

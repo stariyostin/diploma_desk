@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="CreateOrd" Height="450" Width="800">
+        Title="Создание заказа" Height="500" Width="800" MinHeight="500" MinWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -33,20 +34,20 @@
             </Grid.RowDefinitions>
             <!-- Поля для ввода информации о заказе -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-                <TextBlock Text="Имя клиента:" Margin="5"/>
-                <TextBox x:Name="ClientNameTextBox" Margin="5" />
-                <TextBlock Text="Контакты клиента:" Margin="5"/>
-                <TextBox x:Name="ClientContactTextBox" Margin="5" />
-                <TextBlock Text="Дедлайн:" Margin="5"/>
-                <DatePicker x:Name="DeadlineDatePicker" Margin="5" />
+                <TextBlock Text="Имя клиента:" Margin="5" FontSize="14"/>
+                <TextBox x:Name="ClientNameTextBox" Margin="5" FontSize="14" />
+                <TextBlock Text="Контакты клиента:" Margin="5" FontSize="14"/>
+                <TextBox x:Name="ClientContactTextBox" Margin="5" FontSize="14"/>
+                <TextBlock Text="Дедлайн:" Margin="5" FontSize="14"/>
+                <DatePicker x:Name="DeadlineDatePicker" Margin="5" FontSize="14" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
             </StackPanel>
 
             <!-- Список товаров в заказе -->
-            <DataGrid x:Name="ProductsDataGrid" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3">
+            <DataGrid x:Name="ProductsDataGrid" AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3" FontSize="14">
                 <DataGrid.Columns>
                     <!-- Колонки списка товаров -->
-                    <DataGridTextColumn Header="Название" Binding="{Binding ProductName}" />
-                    <DataGridTextColumn Header="Количество" Binding="{Binding Amount}" />
+                    <DataGridTextColumn Header="Название" Binding="{Binding ProductName}" FontSize="14" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"  FontSize="14" IsReadOnly="True"/>
 
                     <!-- Колонка кнопки "Изменить товар" -->
                     <DataGridTemplateColumn Header="Опции">
@@ -54,7 +55,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Content="Изменить товар" Click="EditProductButton_Click" Margin="0 0 5 0" />
-                                    <Button Content="Удалить товар" Click="DeleteProductButton_Click" />
+                                    <Button Content="Удалить товар" Click="DeleteProductButton_Click" Background="IndianRed"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -64,9 +65,27 @@
 
             <!-- Кнопки управления -->
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="2">
-                <Button Content="Очистить все поля" Margin="5" Click="ClearFieldsButton_Click" />
-                <Button Content="Добавить товар" Margin="5" Click="AddProductButton_Click" />
-                <Button Content="Создать заказ" Margin="5" Click="СreateOrder_Click" />
+                <Button Content="Очистить все поля" Margin="5" Click="ClearFieldsButton_Click" FontSize="14" Background="IndianRed">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Content="Добавить товар" Margin="5" Click="AddProductButton_Click" FontSize="14" Background="RosyBrown">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Content="Создать заказ" Margin="5" Click="СreateOrder_Click" FontSize="14" Background="Honeydew">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

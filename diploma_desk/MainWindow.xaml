@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800"  MaxHeight="450" MaxWidth="800">
+        Title="Главная" Height="450" Width="800" MinHeight="450" MinWidth="800"  MaxHeight="450" MaxWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -33,9 +33,9 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Label FontSize="24" FontWeight="Bold" VerticalContentAlignment="Center" Content="Добро пожаловать!"/>
-            <Label Grid.Row="1" FontSize="16" Content="Возьмите заказ на странице Заказы &#13;Удачного рабочего дня!"/>
-            <Image Grid.Row="1" Grid.Column="2" Source="C:\Users\sasha\Desktop\User.png"/>
+            <Label Name="WelLbl"  FontSize="24" FontWeight="Bold" VerticalContentAlignment="Center" Content="Добро пожаловать!"/>
+            <Label Grid.Row="1" FontSize="16" Content="Возьмите заказ на странице Заказы &#13;Или просмотрите ранее взятые заказы &#13;Удачного рабочего дня!"/>
+            <Image Grid.Row="1" Grid.Column="2" Source="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.png"/>
         </Grid>
         
     </Grid>

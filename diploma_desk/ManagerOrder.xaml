@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="ManagerOrder" Height="450" Width="800"  MinHeight="450" MinWidth="800"  MaxHeight="450" MaxWidth="800">
+        Title="ManagerOrder" Height="450" Width="1200">
     <Window.Resources>
         <local:BtnManOrdConverter  x:Key="BtnManOrdConverter"/>
     </Window.Resources>
@@ -38,19 +38,19 @@
             <DataGrid x:Name="ordersDataGrid" Grid.Column="1" AutoGenerateColumns="False" Margin="10">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID Order" Binding="{Binding IDOrder}"/>
-                    <DataGridTextColumn Header="Client" Binding="{Binding ClientName}"/>
-                    <DataGridTextColumn Header="Contact" Binding="{Binding ClientContact}"/>
-                    <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}"/>
-                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Header="Date of Create" Binding="{Binding DateOfCreate}"/>
-                    <DataGridTextColumn Header="Deadline" Binding="{Binding Deadline}"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                    <DataGridTextColumn Header="Manager" Binding="{Binding Manager}"/>
-                    <DataGridTemplateColumn Header="Actions">
+                    <DataGridTextColumn Header="Имя клиента" Binding="{Binding ClientName}"/>
+                    <DataGridTextColumn Header="Контакты" Binding="{Binding ClientContact}"/>
+                    <DataGridTextColumn Header="Название товара" Binding="{Binding ProductName}"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Amount}"/>
+                    <DataGridTextColumn Header="Дата создания" Binding="{Binding DateOfCreate}"/>
+                    <DataGridTextColumn Header="Дедлайн" Binding="{Binding Deadline}"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Менеджер" Binding="{Binding Manager}"/>
+                    <DataGridTemplateColumn Header="Действия">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Ready" Width="80" Margin="2" Click="ButtonReady_Click">
+                                    <Button Content="Готов" Width="80" Margin="2" Click="ButtonReady_Click">
                                         <Button.IsEnabled>
                                             <MultiBinding Converter="{StaticResource BtnManOrdConverter}">
                                                 <Binding Path="Status"/>
@@ -58,7 +58,7 @@
                                             </MultiBinding>
                                         </Button.IsEnabled>
                                     </Button>
-                                    <Button Content="Change" Width="80" Margin="2" Click="ButtonChange_Click">
+                                    <Button Content="Изменить" Width="80" Margin="2" Click="ButtonChange_Click">
                                         <Button.IsEnabled>
                                             <MultiBinding Converter="{StaticResource BtnManOrdConverter}">
                                                 <Binding Path="Status"/>
@@ -66,7 +66,7 @@
                                             </MultiBinding>
                                         </Button.IsEnabled>
                                     </Button>
-                                    <Button Content="Reject" Width="80" Margin="2" Click="ButtonReject_Click">
+                                    <Button Content="Отказаться" Width="80" Margin="2" Click="ButtonReject_Click">
                                         <Button.IsEnabled>
                                             <MultiBinding Converter="{StaticResource BtnManOrdConverter}">
                                                 <Binding Path="Status"/>
