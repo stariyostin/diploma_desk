@@ -54,8 +54,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Изменить товар" Click="EditProductButton_Click" Margin="0 0 5 0" />
-                                    <Button Content="Удалить товар" Click="DeleteProductButton_Click" Background="IndianRed"/>
+                                    <Button Content="Изменить товар" Click="EditProductButton_Click" Margin="0 0 5 0" FontSize="14" Background="PaleTurquoise"/>
+                                    <Button Content="Удалить товар" Click="DeleteProductButton_Click" FontSize="14" Background="IndianRed"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -72,14 +72,14 @@
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Content="Добавить товар" Margin="5" Click="AddProductButton_Click" FontSize="14" Background="RosyBrown">
+                <Button Content="Добавить товар" Margin="5" Click="AddProductButton_Click" FontSize="14" Background="PaleTurquoise">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Button Content="Создать заказ" Margin="5" Click="СreateOrder_Click" FontSize="14" Background="Honeydew">
+                <Button Content="Создать заказ" Margin="5" Click="СreateOrder_Click" FontSize="14" Background="PaleGreen">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>

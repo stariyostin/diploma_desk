@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="EditProductWindow" Height="300" Width="400">
+        Title="Изменение товара" Height="300" Width="400"  MinHeight="300" MinWidth="400" MaxHeight="300" MaxWidth="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,7 +29,13 @@
         <TextBlock Grid.Row="1" Grid.Column="0" Text="Количество:" VerticalAlignment="Center"/>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="AmountTextBox" Margin="5"/>
 
-        <Button Grid.Row="2" Grid.Column="1" Content="Сохранить" Click="SaveButton_Click" Margin="5"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Сохранить" Click="SaveButton_Click" Margin="5" Background="GreenYellow">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
     </Grid>
 </Window>

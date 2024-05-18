@@ -80,7 +80,7 @@ namespace diploma_desk
                 int newAmount;
                 if (!int.TryParse(AmountTextBox.Text, out newAmount))
                 {
-                    MessageBox.Show("Введено некорректное значение.");
+                    MessageBox.Show("Введено некорректное значение количества товара.");
                     return;
                 }
 
