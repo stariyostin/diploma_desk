@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="Отклонение заказа" Height="150" Width="300">
+        Title="Отклонение заказа" Height="150" Width="300" MaxHeight="150" MaxWidth="300" MinHeight="150" MinWidth="300">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Выберите причину:" Margin="0 0 0 10" />
