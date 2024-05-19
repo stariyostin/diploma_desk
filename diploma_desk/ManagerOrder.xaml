@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
-        Title="ManagerOrder" Height="450" Width="1200">
+        Icon="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.ico"
+        Title="Мои заказы" Height="450" Width="1225" MinHeight="450" MinWidth="1225">
     <Window.Resources>
         <local:BtnManOrdConverter  x:Key="BtnManOrdConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -25,7 +27,16 @@
         <Button Grid.Column="2" Background="#fcba65" Click="BtnOrd_Click" IsEnabled="True" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Заказы"/>
         <Button Grid.Column="3" Background="#fcba65"  IsEnabled="False" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Мои заказы"/>
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="4">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+            <ComboBox x:Name="ClientFilterComboBox" HorizontalAlignment="Center" SelectionChanged="ClientFilterComboBox_SelectionChanged" Margin="10" Width="200">
+                <ComboBoxItem Content="Все клиенты"/>
+            </ComboBox>
+            <Button Click="ResetFilterButton_Click" Margin="10">
+                <Image Source="/Images/reset.png" Width="25"/>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20*"/>

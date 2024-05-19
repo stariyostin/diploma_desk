@@ -47,39 +47,76 @@ namespace diploma_desk
         {
             InitializeComponent();
             dbContext = new PapirusEntities1(); // Инициализация контекста данных
+            LoadClients(); // Загрузка списка клиентов
             LoadData();
+        }
+
+        private void LoadClients()
+        {
+            try
+            {
+                var uniqueClients = dbContext.Order.Select(order => order.User.ClientName).Distinct().ToList();
+                ClientFilterComboBox.Items.Clear();
+                ClientFilterComboBox.Items.Add("Все клиенты"); // Добавляем элемент "Все клиенты" в начало списка
+                foreach (var client in uniqueClients)
+                {
+                    ClientFilterComboBox.Items.Add(client);
+                }
+                ClientFilterComboBox.SelectedIndex = 0; // Устанавливаем выбранным первый элемент по умолчанию
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while loading clients: " + ex.Message);
+            }
         }
 
         private void LoadData()
         {
             try
             {
-                var orders = from order in dbContext.Order
-                             join user in dbContext.User on order.UserID equals user.IDUser
-                             join orderProduct in dbContext.Order_Product on order.IDOrder equals orderProduct.OrderID
-                             join product in dbContext.Product on orderProduct.ProductID equals product.IDProduct
-                             join manager in dbContext.Manager on order.ManagerID equals manager.IDManager into managerGroup
-                             from mgr in managerGroup.DefaultIfEmpty()
-                             join status in dbContext.Status on order.StatusID equals status.IDStatus
-                             select new
-                             {
-                                 IDOrder = order.IDOrder,
-                                 ClientName = user.ClientName,
-                                 ClientContact = user.ClientContact,
-                                 ProductName = product.Name,
-                                 Amount = orderProduct.Amount,
-                                 DateOfCreate = order.DateOfCreate,
-                                 Deadline = order.DeadLine,
-                                 Status = status.Name,
-                                 Manager = mgr != null ? mgr.Name : "None"
-                             };
+                string selectedClient = ClientFilterComboBox.SelectedItem?.ToString();
 
-                ordersDataGrid.ItemsSource = orders.ToList(); // Заполнение DataGrid данными
+                var ordersQuery = from order in dbContext.Order
+                                  join user in dbContext.User on order.UserID equals user.IDUser
+                                  join orderProduct in dbContext.Order_Product on order.IDOrder equals orderProduct.OrderID
+                                  join product in dbContext.Product on orderProduct.ProductID equals product.IDProduct
+                                  join manager in dbContext.Manager on order.ManagerID equals manager.IDManager into managerGroup
+                                  from mgr in managerGroup.DefaultIfEmpty()
+                                  join status in dbContext.Status on order.StatusID equals status.IDStatus
+                                  select new
+                                  {
+                                      IDOrder = order.IDOrder,
+                                      ClientName = user.ClientName,
+                                      ClientContact = user.ClientContact,
+                                      ProductName = product.Name,
+                                      Amount = orderProduct.Amount,
+                                      DateOfCreate = order.DateOfCreate,
+                                      Deadline = order.DeadLine,
+                                      Status = status.Name,
+                                      Manager = mgr != null ? mgr.Name : "None"
+                                  };
+
+                if (!string.IsNullOrEmpty(selectedClient) && selectedClient != "Все клиенты")
+                {
+                    ordersQuery = ordersQuery.Where(order => order.ClientName == selectedClient);
+                }
+
+                ordersDataGrid.ItemsSource = ordersQuery.ToList();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+        }
+
+        private void ClientFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadData();
+        }
+        private void ResetFilterButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClientFilterComboBox.SelectedIndex = 0; // Сбрасываем выбранный элемент в комбо-боксе
+            LoadData(); // Перезагружаем все заказы
         }
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {

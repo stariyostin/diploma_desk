@@ -6,6 +6,7 @@
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
+        Icon="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.ico"
         Title="Создание заказа" Height="500" Width="800" MinHeight="500" MinWidth="800">
     <Grid>
         <Grid.RowDefinitions>

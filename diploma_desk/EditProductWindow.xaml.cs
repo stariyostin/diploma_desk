@@ -25,6 +25,7 @@ namespace diploma_desk
         private int productId;
         private int orderId;
 
+
         public EditProductWindow(int productId, int orderId)
         {
             InitializeComponent();

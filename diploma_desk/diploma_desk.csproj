@@ -205,6 +205,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Icon.png" />
+    <Resource Include="Images\reset.png" />
+    <Resource Include="Images\Icon.ico" />
     <Content Include="ModelPapirus.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelPapirus.edmx</DependentUpon>

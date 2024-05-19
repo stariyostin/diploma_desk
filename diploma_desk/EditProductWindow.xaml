@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
+        Icon="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.ico"
         Title="Изменение товара" Height="300" Width="400"  MinHeight="300" MinWidth="400" MaxHeight="300" MaxWidth="400">
     <Grid>
         <Grid.RowDefinitions>

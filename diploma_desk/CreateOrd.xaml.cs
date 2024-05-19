@@ -286,6 +286,12 @@ namespace diploma_desk
                 MessageBox.Show("Выберите товар для удаления из заказа.");
             }
         }
+        // Метод для проверки наличия текста, а не только спецсимволов
+        private bool ContainsValidText(string input)
+        {
+            // Проверяем, что строка содержит хотя бы одну букву или цифру (латинские или русские буквы)
+            return System.Text.RegularExpressions.Regex.IsMatch(input, @"[a-zA-Zа-яА-Я0-9]");
+        }
         private void СreateOrder_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -296,6 +302,23 @@ namespace diploma_desk
                     return; // Прерываем выполнение метода, если заказ не прошел валидацию
                 }
 
+                // Очищаем ввод от лишних пробелов
+                string clientName = ClientNameTextBox.Text.Trim();
+                string clientContact = ClientContactTextBox.Text.Trim();
+
+                // Проверка на наличие спецсимволов без текста
+                if (!ContainsValidText(clientName) || !ContainsValidText(clientContact))
+                {
+                    MessageBox.Show("Имя клиента и контактные данные не должны содержать только специальные символы.");
+                    return;
+                }
+
+                // Проверяем, заполнены ли поля
+                if (string.IsNullOrWhiteSpace(clientName) || string.IsNullOrWhiteSpace(clientContact))
+                {
+                    MessageBox.Show("Имя клиента и контактные данные не должны быть пустыми или состоять только из пробелов.");
+                    return;
+                }
                 // Проверяем, существует ли уже заказ с такими же данными
                 var existingOrder = dbContext.Order.Any(o =>
                     dbContext.User.Any(u =>
@@ -313,15 +336,15 @@ namespace diploma_desk
                 }
 
                 // Проверяем, существует ли пользователь с указанным именем и контактом
-                User existingUser = dbContext.User.FirstOrDefault(u => u.ClientName == ClientNameTextBox.Text && u.ClientContact == ClientContactTextBox.Text);
+                User existingUser = dbContext.User.FirstOrDefault(u => u.ClientName == clientName && u.ClientContact == clientContact);
 
                 if (existingUser == null)
                 {
                     // Если пользователь не существует, создаем новую запись
                     existingUser = new User
                     {
-                        ClientName = ClientNameTextBox.Text,
-                        ClientContact = ClientContactTextBox.Text
+                        ClientName = clientName,
+                        ClientContact = clientContact
                     };
 
                     // Добавляем нового пользователя в контекст данных
