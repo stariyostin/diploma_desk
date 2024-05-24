@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
         Icon="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.ico"
-        Title="Заказы" Height="450" Width="1270" MinHeight="450" MinWidth="1270">
+        Title="Заказы" Height="450" Width="1270" MinHeight="450" MinWidth="1270" MaxHeight="450" MaxWidth="1270">
     <Window.Resources>
         <local:ButtonAvailabilityConverter x:Key="ButtonAvailabilityConverter"/>
     </Window.Resources>

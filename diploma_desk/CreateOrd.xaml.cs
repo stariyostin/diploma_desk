@@ -23,9 +23,11 @@ namespace diploma_desk
         private PapirusEntities1 dbContext;
         private int orderId;
 
-        public CreateOrd()
+        public CreateOrd(double left, double top)
         {
             InitializeComponent();
+            this.Left = left;
+            this.Top = top;
             dbContext = new PapirusEntities1(); // Инициализация контекста данных
             CreateOrderWithDummyData(); // Создаем заказ с заглушками при открытии окна
             LoadOrderData();
@@ -369,7 +371,7 @@ namespace diploma_desk
                     dbContext.SaveChanges();
 
                     MessageBox.Show("Заказ успешно создан.");
-                    OrderWin orderWin = new OrderWin();
+                    OrderWin orderWin = new OrderWin(this.Left, this.Top);
                     orderWin.Show();
                     this.Close();
                 }
@@ -394,7 +396,7 @@ namespace diploma_desk
         private void BtnMain_Click(object sender, RoutedEventArgs e)
         {
             DeleteOrd();
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(this.Left, this.Top);
             mainWindow.Show();
             this.Close();
         }
@@ -402,7 +404,7 @@ namespace diploma_desk
         private void BtnOrd_Click(object sender, RoutedEventArgs e)
         {
             DeleteOrd();
-            OrderWin orderWin = new OrderWin();
+            OrderWin orderWin = new OrderWin(this.Left, this.Top);
             orderWin.Show();
             this.Close();
         }
@@ -410,7 +412,7 @@ namespace diploma_desk
         private void BtnMyOrd_Click(object sender, RoutedEventArgs e)
         {
             DeleteOrd();
-            ManagerOrder managerOrder = new ManagerOrder();
+            ManagerOrder managerOrder = new ManagerOrder(this.Left, this.Top);
             managerOrder.Show();
             this.Close();
         }

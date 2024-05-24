@@ -43,9 +43,11 @@ namespace diploma_desk
     public partial class OrderWin : Window
     {
         private PapirusEntities1 dbContext; // Контекст данных
-        public OrderWin()
+        public OrderWin(double left, double top)
         {
             InitializeComponent();
+            this.Left = left;
+            this.Top = top;
             dbContext = new PapirusEntities1(); // Инициализация контекста данных
             LoadClients(); // Загрузка списка клиентов
             LoadData();
@@ -208,21 +210,21 @@ namespace diploma_desk
 
         private void BtnMain_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(this.Left, this.Top);
             mainWindow.Show();
             this.Close();
         }
 
         private void BtnMyOrd_Click(object sender, RoutedEventArgs e)
         {
-            ManagerOrder managerOrder = new ManagerOrder();
+            ManagerOrder managerOrder = new ManagerOrder(this.Left, this.Top);
             managerOrder.Show();
             this.Close();
         }
 
         private void BtnCreateOrd_Click(object sender, RoutedEventArgs e)
         {
-            CreateOrd createOrd = new CreateOrd();
+            CreateOrd createOrd = new CreateOrd(this.Left, this.Top);
             createOrd.Show();
             this.Close();
         }

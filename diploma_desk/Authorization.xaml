@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
         Icon="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.ico"
-        Title="Авторизация" Height="350" Width="400" MinHeight="350" MinWidth="400">
+        Title="Авторизация" Height="350" Width="400" MinHeight="350" MinWidth="400" MaxHeight="350" MaxWidth="400">
     <Window.Resources>
         <Style x:Key="authBtn" TargetType="Button">
             <Setter Property="Background" Value="PaleGreen"/>

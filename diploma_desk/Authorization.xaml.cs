@@ -39,7 +39,7 @@ namespace diploma_desk
                     if (manager != null)
                     {
                         CurrentManager.Id = manager.IDManager;
-                        MainWindow mainWindow = new MainWindow();
+                        MainWindow mainWindow = new MainWindow(this.Left, this.Top);
                         mainWindow.Show();
                         this.Close();
                     }

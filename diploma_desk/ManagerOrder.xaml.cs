@@ -43,9 +43,11 @@ namespace diploma_desk
     public partial class ManagerOrder : Window
     {
         private PapirusEntities1 dbContext; // Контекст данных
-        public ManagerOrder()
+        public ManagerOrder(double left, double top)
         {
             InitializeComponent();
+            this.Left = left;
+            this.Top = top;
             dbContext = new PapirusEntities1(); // Инициализация контекста данных
             LoadClientsForManager(CurrentManager.Id); // Загрузка клиентов для текущего менеджера
             LoadOrdersForManager(CurrentManager.Id); // Загрузка заказов для текущего менеджера
@@ -184,7 +186,7 @@ namespace diploma_desk
                 int orderId = selectedOrder.IDOrder;
 
                 // Создаем экземпляр окна изменения заказа, передавая ID заказа
-                EditOrd editOrderWindow = new EditOrd(orderId);
+                EditOrd editOrderWindow = new EditOrd(orderId, this.Left, this.Top);
 
                 // Открываем окно изменения заказа
                 editOrderWindow.Show();
@@ -194,21 +196,21 @@ namespace diploma_desk
 
         private void BtnCreateOrd_Click(object sender, RoutedEventArgs e)
         {
-            CreateOrd createOrd = new CreateOrd();
+            CreateOrd createOrd = new CreateOrd(this.Left, this.Top);
             createOrd.Show();
             this.Close();
         }
 
         private void BtnMain_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(this.Left, this.Top);
             mainWindow.Show();
             this.Close();
         }
 
         private void BtnOrd_Click(object sender, RoutedEventArgs e)
         {
-            OrderWin orderWin = new OrderWin();
+            OrderWin orderWin = new OrderWin(this.Left, this.Top);
             orderWin.Show();
             this.Close();
         }

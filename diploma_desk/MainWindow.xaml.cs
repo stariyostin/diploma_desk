@@ -19,9 +19,11 @@ namespace diploma_desk
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(double left, double top)
         {
             InitializeComponent();
+            this.Left = left;
+            this.Top = top;
             using (PapirusEntities1 db = new PapirusEntities1())
             {
                 Manager manager = db.Manager.Where(x => x.IDManager == CurrentManager.Id).FirstOrDefault();
@@ -34,21 +36,21 @@ namespace diploma_desk
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
-            CreateOrd createOrd = new CreateOrd();
+            CreateOrd createOrd = new CreateOrd(this.Left, this.Top);
             createOrd.Show();
             this.Close();
         }
 
         private void BtnOrder_Click(object sender, RoutedEventArgs e)
         {
-            OrderWin order = new OrderWin();
+            OrderWin order = new OrderWin(this.Left, this.Top);
             order.Show();
             this.Close();
         }
 
         private void BtnMyOrd_Click(object sender, RoutedEventArgs e)
         {
-            ManagerOrder managerOrder = new ManagerOrder();
+            ManagerOrder managerOrder = new ManagerOrder(this.Left, this.Top);
             managerOrder.Show();
             this.Close();
         }

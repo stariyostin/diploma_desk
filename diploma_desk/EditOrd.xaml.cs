@@ -24,9 +24,11 @@ namespace diploma_desk
     {
         private PapirusEntities1 dbContext;
         private int orderId;
-        public EditOrd(int orderId)
+        public EditOrd(int orderId, double left, double top)
         {
             InitializeComponent();
+            this.Left = left;
+            this.Top = top;
             dbContext = new PapirusEntities1(); // Инициализация контекста данных
             this.orderId = orderId;
             LoadOrderData();
@@ -129,7 +131,7 @@ namespace diploma_desk
                     dbContext.Order.Remove(order);
                     dbContext.SaveChanges();
                     MessageBox.Show("Заказ успешно удалён");
-                    ManagerOrder managerOrder = new ManagerOrder();
+                    ManagerOrder managerOrder = new ManagerOrder(this.Left, this.Top);
                     managerOrder.Show();
                     // Закрываем окно
                     this.Close();
@@ -377,26 +379,26 @@ namespace diploma_desk
         }
         private void BtnCreateOrd_Click(object sender, RoutedEventArgs e)
         {
-            CreateOrd createOrd = new CreateOrd();
+            CreateOrd createOrd = new CreateOrd(this.Left, this.Top);
             createOrd.Show();
             this.Close();
         }
         private void BtnMain_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(this.Left, this.Top);
             mainWindow.Show();
             this.Close();
         }
 
         private void BtnOrd_Click(object sender, RoutedEventArgs e)
         {
-            OrderWin orderWin = new OrderWin();
+            OrderWin orderWin = new OrderWin(this.Left, this.Top);
             orderWin.Show();
             this.Close();
         }
         private void BtnMyOrd_Click(object sender, RoutedEventArgs e)
         {
-            ManagerOrder managerOrder = new ManagerOrder();
+            ManagerOrder managerOrder = new ManagerOrder(this.Left, this.Top);
             managerOrder.Show();
             this.Close();
         }

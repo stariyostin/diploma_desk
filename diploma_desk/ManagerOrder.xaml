@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:diploma_desk"
         mc:Ignorable="d"
         Icon="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.ico"
-        Title="Мои заказы" Height="450" Width="1225" MinHeight="450" MinWidth="1225">
+        Title="Мои заказы" Height="450" Width="1225" MinHeight="450" MinWidth="1225" MaxHeight="450" MaxWidth="1225">
     <Window.Resources>
         <local:BtnManOrdConverter  x:Key="BtnManOrdConverter"/>
     </Window.Resources>
