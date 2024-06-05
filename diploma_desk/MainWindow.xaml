@@ -25,7 +25,7 @@
         
         <Grid Grid.Row="1" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="0.5*"/>
@@ -36,7 +36,7 @@
             </Grid.RowDefinitions>
             <Label Name="WelLbl"  FontSize="24" FontWeight="Bold" VerticalContentAlignment="Center" Content="Добро пожаловать!"/>
             <Label Grid.Row="1" FontSize="16" Content="Возьмите заказ на странице Заказы &#13;Или просмотрите ранее взятые заказы &#13;Удачного рабочего дня!"/>
-            <Image Grid.Row="1" Grid.Column="2" Source="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.png"/>
+            <Image Grid.Row="1"  Grid.Column="2" Source="C:\Users\sasha\Desktop\VS\diploma_desk\diploma_desk\Images\Icon.png"/>
         </Grid>
         
     </Grid>
