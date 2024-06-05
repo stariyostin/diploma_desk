@@ -43,7 +43,7 @@ namespace diploma_desk
                     {
                         DateOfCreate = DateTime.Now, // Устанавливаем текущую дату
                         StatusID = 1, // Устанавливаем начальный статус заказа
-                        UserID = 1,
+                        UserID = 48,
                         DeadLine = new DateTime(2001, 1, 1)
             };
 

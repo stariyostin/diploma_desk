@@ -46,9 +46,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <DataGrid x:Name="ordersDataGrid" Grid.Column="1" AutoGenerateColumns="False" Margin="10">
+            <DataGrid x:Name="ordersDataGrid" Grid.Column="1" AutoGenerateColumns="False" Margin="10" Background="AliceBlue">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Order" Binding="{Binding IDOrder}"/>
+                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding IDOrder}"/>
                     <DataGridTextColumn Header="Имя клиента" Binding="{Binding ClientName}"/>
                     <DataGridTextColumn Header="Контакты" Binding="{Binding ClientContact}"/>
                     <DataGridTextColumn Header="Название товара" Binding="{Binding ProductName}"/>

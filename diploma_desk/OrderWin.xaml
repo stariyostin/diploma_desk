@@ -28,7 +28,7 @@
         <Button Grid.Column="3" Background="#fcba65"  IsEnabled="True" Click="BtnMyOrd_Click" FontSize="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Мои заказы"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-            <ComboBox x:Name="ClientFilterComboBox" HorizontalAlignment="Center" SelectionChanged="ClientFilterComboBox_SelectionChanged" Margin="10" Width="200">
+            <ComboBox x:Name="ClientFilterComboBox" HorizontalAlignment="Center" SelectionChanged="ClientFilterComboBox_SelectionChanged" Margin="10" Width="200" Background="AliceBlue">
                 <ComboBoxItem Content="Все клиенты"/>
             </ComboBox>
             <Button Click="ResetFilterButton_Click" Margin="10">
@@ -46,9 +46,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <DataGrid x:Name="ordersDataGrid" Grid.Column="1" AutoGenerateColumns="False" Margin="10">
+            <DataGrid x:Name="ordersDataGrid" Grid.Column="1" AutoGenerateColumns="False" Margin="10" Background="AliceBlue">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID Order" Binding="{Binding IDOrder}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="№ Заказа" Binding="{Binding IDOrder}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Имя клиента" Binding="{Binding ClientName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Контакты" Binding="{Binding ClientContact}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название товара" Binding="{Binding ProductName}" IsReadOnly="True"/>
