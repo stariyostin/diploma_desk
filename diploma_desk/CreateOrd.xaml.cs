@@ -108,7 +108,7 @@ namespace diploma_desk
             // Пусть, для примера, заказ считается заглушечным, если ID пользователя равен 1,
             // дата создания заказа равна текущей дате, а статус заказа равен 1.
 
-            return order.UserID == 1 &&
+            return order.UserID == 48 &&
                    order.DeadLine == new DateTime(2001, 1, 1) &&
                    order.StatusID == 1;
         }
